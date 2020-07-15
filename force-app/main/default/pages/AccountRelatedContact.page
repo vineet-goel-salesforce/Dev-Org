@@ -1,0 +1,13 @@
+<apex:page standardcontroller="Account" extensions="accext">
+    <apex:form >
+        <apex:pageblock title="accountinformation">
+                <apex:selectList size="1" value="{!accname}">
+                    <apex:actionSupport action="{!ConNames}" event="onchange" rerender="daysList"/>
+                      <apex:selectOptions value="{!Items}"/>
+                </apex:selectList>
+            <apex:pageblocktable Id="daysList" value="{!conlist}" var="conl">
+                <apex:column value="{!conl.Name}"/>
+            </apex:pageblocktable>
+        </apex:pageblock>   
+    </apex:form>
+</apex:page>

@@ -1,0 +1,18 @@
+<apex:page controller="UserExtensions" tabStyle="Account">
+    <apex:form >
+        <apex:pageblock title="Select User">
+            <apex:selectList value="{!AccNames}" size="1" title="Select Account">
+                <apex:selectOptions value="{!AccName}"/>
+            </apex:selectList>
+            <apex:pageblocktable value="{!Userlist}" var="u">
+                <apex:column headervalue="Checked">
+                    <input type="checkbox"/>
+                </apex:column>
+                <apex:column value="{!u.Name}"/>
+            </apex:pageblocktable>
+            <apex:pageblockbuttons location="bottom">
+                <apex:commandbutton value="Ressign" action="{!ressign}"/>
+            </apex:pageblockbuttons>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

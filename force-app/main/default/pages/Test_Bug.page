@@ -1,0 +1,6 @@
+<apex:page >
+    <apex:outputPanel id="panel">OK!!</apex:outputPanel>
+    <apex:form >
+        <apex:commandButton value="TEST" rerender="panel"/>
+    </apex:form>
+</apex:page>

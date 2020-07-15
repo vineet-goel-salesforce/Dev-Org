@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute type="String[]" name="test" access="global"/>
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <ui:inputSelect label="Single Color:" aura:id="colorSelection" change="{!c.onSelectChange}">                                                                     
+            <aura:iteration items="{!v.test}" var="colorItem">
+                <ui:inputSelectOption text="{!colorItem}" label="{!colorItem}" value="true"/>
+            </aura:iteration>
+        </ui:inputSelect>   
+    <ui:button label="Selection" press="{!c.getValue}" />
+</aura:component>

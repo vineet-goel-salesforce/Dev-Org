@@ -1,0 +1,43 @@
+<apex:page >
+<html>
+<head>
+<script type="text/javascript">
+(function() { 
+  function handlePageLoad() {
+    var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+    document.getElementById('prechatForm').setAttribute('action',
+    decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+  } 
+  if (window.addEventListener) {
+    window.addEventListener('load', handlePageLoad, false);
+  } else { 
+    window.attachEvent('onload', handlePageLoad, false);
+  }
+})(); 
+</script>
+</head>
+<body>
+<form method="post" id="prechatForm">
+            Email: <input type="hidden" name="liveagent.prechat.save:Email" value="Email__c" />
+            First Name:<input type="hidden" name="liveagent.prechat.save:First Name" value="First_Name__c" />
+            Last Name: <input type="hidden" name="liveagent.prechat.save:Last Name" value="Last_Name__c" />
+            Reason For Assistance: <input type="hidden" name="liveagent.prechat.save:Reason For Assistance" value="Reason_For_Assistance__c" />
+            Brand: <input type="hidden" name="liveagent.prechat.save:Brand" value="Brand__c" />
+            Idle Time On Page: <input type="hidden" name="liveagent.prechat.save:IdleTimeOnPage" value="Idle_Time_On_Page__c" />
+
+<!-- Map the detail inputs to the Contact and Account fields --> 
+  <input type="hidden" name="liveagent.prechat.findorcreate.map:Account" value="PersonEmail,Email" />
+  <input type="hidden" name="liveagent.prechat.findorcreate.map.doFind:Account" value="PersonEmail,true" />
+  <input type="hidden" name="liveagent.prechat.findorcreate.map.isExactMatch:Account" value="PersonEmail,true" />   
+  
+    <input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Account" value="true" /> 
+
+<!-- Link the Contact and Account to the Case -->
+<input type= "hidden" name="liveagent.prechat.findorcreate.linkToEntity:Contact" value="Case,ContactId" />
+<input type= "hidden" name="liveagent.prechat.findorcreate.linkToEntity:Account" value="Case,AccountId" /> 
+<input type="submit" value="Request Chat" id="prechat_submit" />             
+        
+</form> 
+</body>
+</html>
+</apex:page>

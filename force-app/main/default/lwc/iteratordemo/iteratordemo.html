@@ -1,0 +1,14 @@
+<template>
+    <template iterator:ceo={ceoList}>
+        <div key={ceo.value.id}>
+            <a href="#" if:true={ceo.first} class="list-group-item list-group-item-action header"><strong>List of top
+                    companies and their CEOs</strong></a>
+
+            <a href="#" class="list-group-item list-group-item-action"><strong>{ceo.value.company} :
+                    {ceo.value.name}</strong></a>
+
+            <a href="#" if:true={ceo.last} class="list-group-item list-group-item-action footer"><strong>&copy; 2020
+                    Vineet Goel</strong></a>
+        </div>
+    </template>
+</template>

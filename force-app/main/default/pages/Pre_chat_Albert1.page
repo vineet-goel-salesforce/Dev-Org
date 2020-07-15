@@ -1,0 +1,45 @@
+<apex:page showHeader="false">
+
+<!-- This script takes the endpoint URL parameter passed from the deployment page and makes it the action for the form -->
+<script type='text/javascript'>
+(function() {
+function handlePageLoad() {
+var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+document.getElementById('prechatForm').setAttribute('action',
+decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+} if (window.addEventListener) {
+window.addEventListener('load', handlePageLoad, false);
+} else { window.attachEvent('onload', handlePageLoad, false);
+}})();
+</script>
+
+
+<form method="post" id="prechatForm">
+
+<!-- Predefined values for Contact fields -->
+
+    First name: <input type='text' name='liveagent.prechat:ContactFirstName'  /><br />
+    Last name: <input type='text' name='liveagent.prechat:ContactLastName'  /><br />
+    Account: <input type='text' name='liveagent.prechat:ContactAccount'  /><br />
+    Email: <input type='text' name='liveagent.prechat:ContactEmail'  /><br />
+    
+    
+<!-- Show the Account when it is found or created 
+ Record Type: <input type='text' name='liveagent.prechat:cRecordTypeId' value="01228000000THW9"/>
+<input type="hidden" name="liveagent.prechat:AccountRecordType" value="01228000000THW9" />
+
+--> 
+
+<input type="hidden" name="liveagent.prechat.findorcreate.map:Account" value="FirstName,ContactAccount;PersonEmail,ContactEmail;LastName:ContactLastName" /> 
+
+<input type="hidden" name="liveagent.prechat.findorcreate.map.doCreate:Account" value="FirstName,true;PersonEmail,true;LastName,true" /> 
+<input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Account" value="true" />
+
+
+
+<input type='submit' value='Chat Now' id='prechat_submit' onclick="setName()"/>
+
+
+
+</form> 
+</apex:page>

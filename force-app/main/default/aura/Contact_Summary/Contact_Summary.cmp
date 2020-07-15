@@ -1,0 +1,262 @@
+<aura:component controller="ContactController_Mobile">
+    
+    <aura:attribute name="contactId" type="Id"/>
+    <aura:attribute name="contact" type="Contact" />     
+    <aura:attribute name="homeAddress" type="String" />    
+    <aura:attribute name="attachment" type="Attachment" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <ltng:require styles="/resource/SLDS090/assets/styles/salesforce-lightning-design-system-vf.css"/>
+    
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div class="slds">    
+        
+        <!-- PAGE HEADER -->
+
+        <div class="slds-text-heading--medium slds-text-align--center">{!v.contact.Name}</div>            
+
+        <!-- / PAGE HEADER -->
+        
+        
+        <!-- PRIMARY CONTENT WRAPPER -->
+        <div class="myapp-TBD">
+            
+            <div class="slds-grid slds-wrap slds-m-top--large">
+                
+                <!-- PHOTO CARD -->
+                <div class="slds-col slds-p-left--small slds-size--1-of-3 slds-small-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-4">
+                    
+<!-- The following line works, but gets the image from static resources, not the Attachment table. -->
+                    <p><img src="/resource/Samplephoto" alt="Constituent Photo" height="100"/></p>
+                    
+                </div>
+                <!-- / PHOTO CARD -->
+                
+               <!-- ADDRESS CARD -->
+                <div class="slds-col slds-p-left--small slds-size--2-of-3 slds-small-size--2-of-3 slds-medium-size--3-of-4 slds-large-size--3-of-4">                  
+                    <div class="slds-card">
+                        <section class="slds-card__body">                            
+                            <div class="slds-tile slds-hint-parent">                                
+                                <div class="slds-tile__detail">
+                                    <dl class="dl--horizontal slds-text-body--small">
+                                     
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p >Preferred Phone:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p >{!v.contact.Phone} ({!v.contact.Preferred_Phone_Type__c})</p>
+                                        </dd>
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p >Home Address:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p >
+                                                <ui:outputRichText value="{!v.contact.HomeStreet__c}" />
+                                                <ui:outputText value="{!v.contact.HomeCity__c}" />{!v.contact.HomeCity__c != null ? ', &nbsp;' : ''}<ui:outputText value="{!v.contact.HomeState__c}" />&nbsp;<ui:outputText value="{!v.contact.HomePostalCode__c}" />
+                                            </p>
+                                        </dd>
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p >Business Address:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p >
+                                                <ui:outputRichText value="{!v.contact.OtherStreet}" />
+                                                <ui:outputText value="{!v.contact.OtherCity}" />{!v.contact.OtherCity__c != null ? ', &nbsp;' : ''}<ui:outputText value="{!v.contact.OtherState}" />&nbsp;<ui:outputText value="{!v.contact.OtherPostalCode}" />
+                                            </p>
+                                        </dd>
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p >Preferred Email:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p ><ui:outputText value="{!v.contact.Email}" /></p>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </section>                        
+                    </div>                   
+                </div>
+                <!-- / ADDRESS CARD -->
+                
+                 <!-- MANAGERS CARD -->
+                <div class="slds-col slds-p-left--small slds-size--1-of-2 slds-small-size--1-of-2 slds-medium-size--2-of-4 slds-large-size--2-of-4">
+                    
+                       <div class="slds-card">
+                        <section class="slds-card__body">
+                            
+                            <div class="slds-tile slds-hint-parent">
+                                
+                                <div class="slds-tile__detail">
+                                    <dl class="dl--horizontal slds-text-body--small">
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p>Primary Manager:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p><ui:outputText value="{!v.contact.PRM__r.Name}" /></p>
+                                        </dd>
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p>Secondary Managers:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p>TBD</p>
+                                        </dd>
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p>Stage of Readiness:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p><ui:outputText value="{!v.contact.Stage_of_Readiness__c}" /></p>
+                                        </dd>
+                                        
+                                    </dl>
+                                </div>
+                            </div>
+                            
+                        </section>                        
+                    </div>
+               
+                    
+                </div>
+                <!-- / MANAGERS CARD -->
+                
+                <!-- OTHER PERSONAL INFO CARD -->
+                <div class="slds-col slds-p-left--small slds-size--1-of-2 slds-small-size--1-of-2 slds-medium-size--2-of-4 slds-large-size--2-of-4">                  
+                    <div class="slds-card">
+                        <section class="slds-card__body">                            
+                            <div class="slds-tile slds-hint-parent">                                
+                                <div class="slds-tile__detail">
+                                    <dl class="dl--horizontal slds-text-body--small">
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p>Constituent Type:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p>{!v.contact.Primary_Constituent_Type__c}</p>
+                                        </dd>
+                                        
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p >Class Year:</p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p >{!v.contact.Degree_Year__c}</p>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </section>                        
+                    </div>                   
+                </div>
+                <!-- / OTHER PERSONAL INFO CARD -->                
+            </div>
+            
+            <!-- STRATEGY Card -->
+            <div class="slds-col slds-p-left--small slds-size--1-of-1">
+                <div class="slds-card">
+                    <header class="slds-card__header">
+                        <div class="slds-media__body">
+                            <h3 class="slds-text-heading--small">Strategy - <ui:outputDate value="{!v.contact.Strategies__r[0].Strategy_Date__c}"/></h3>
+                        </div>
+                    </header>                
+                    
+                    <section class="slds-card__body">
+                        <div class="slds-tile">
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-p-bottom--small"><ui:outputText value="{! 'Responsible Fundraiser: ' + v.contact.Strategies__r[0].Responsible_Fundraiser__r.Name}"/></p>
+                                <p class="slds-p-bottom--small"><ui:outputRichText value="{! 'Summary: ' + v.contact.Strategies__r[0].Strategy_Summary__c}"/></p>
+                                <p><ui:outputRichText value="{! 'Detail: ' + v.contact.Strategies__r[0].Strategy_Detail__c}"/></p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- / STRATEGY Card -->            
+
+            <!-- RATINGS Card -->            
+            <div class="slds-col slds-p-left--small slds-size--1-of-1">
+                <div class="slds-card">
+                    <header class="slds-card__header">
+                        <div class="slds-media__body">
+                            <h3 class="slds-text-heading--small">Wealth Ratings</h3>
+                        </div>
+                    </header>                
+                    
+                    <section class="slds-card__body">
+                        <div class="slds-tile">
+                            <div class="slds-tile__detail">
+                                <dl class="dl--horizontal slds-text-body--small">
+                                    
+                                    <aura:iteration items="{!v.contact.Wealth_Ratings__r}" var="wr">                                       
+                                        <dt class="slds-dl--horizontal__label">
+                                            <p ><ui:outputText value="{!wr.Type__c + ': '}" /></p>
+                                        </dt>
+                                        <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                            <p ><ui:outputText value="{! wr.Wealth_Rating__c != null ? wr.Wealth_Rating__c : 'NA'}" /></p>
+                                        </dd>
+                                    </aura:iteration>
+                                    
+                                </dl>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- / RATINGS Card --> 
+            
+            <!-- GIVING HISTORY Card -->
+            <div class="slds-col slds-p-left--small sslds-size--1-of-1">
+                <div class="slds-card">
+                    <header class="slds-card__header">
+                        <div class="slds-media__body">
+                            <h3 class="slds-text-heading--small">Giving History</h3>
+                        </div>
+                    </header>                
+                    
+                    <section class="slds-card__body">
+                        <div class="slds-tile">
+                            <div class="slds-tile__detail">
+                                <dl class="dl--horizontal slds-text-body--small">
+                                    
+                                    <dt class="slds-dl--horizontal__label">
+                                        <p>Lifetime Total Fundraising:</p>
+                                    </dt>
+                                    <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                        <p><ui:outputCurrency value="{!v.contact.Lifetime_Total_Fundraising__c}" /></p>
+                                    </dd>
+                                    
+                                    <dt class="slds-dl--horizontal__label">
+                                        <p >Lifetime Total Cash:</p>
+                                    </dt>
+                                    <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                        <p ><ui:outputCurrency value="{!v.contact.Lifetime_Total_Cash__c}" /></p>
+                                    </dd>
+                                    
+                                    <dt class="slds-dl--horizontal__label">
+                                        <p >Total Campaign Fundraising:</p>
+                                    </dt>
+                                    <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                        <p ><ui:outputCurrency value="{!v.contact.Total_Campaign_Fundraising__c}" /></p>
+                                    </dd>
+                                    
+                                    <dt class="slds-dl--horizontal__label">
+                                        <p >Campaign Total Cash:</p>
+                                    </dt>
+                                    <dd class="slds-dl--horizontal__detail slds-tile__meta slds-p-bottom--xx-small">
+                                        <p ><ui:outputCurrency value="{!v.contact.Campaign_Total_Cash__c }" /></p>
+                                    </dd>
+                                    
+                                </dl>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- / GIVING HISTORY Card -->            
+            
+        </div>
+    </div>
+    <!-- / REQUIRED SLDS WRAPPER -->    
+</aura:component>

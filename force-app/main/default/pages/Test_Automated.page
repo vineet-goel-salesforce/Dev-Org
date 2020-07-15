@@ -1,0 +1,47 @@
+<apex:page >
+<!-- This section creates the div with the UI for chat invitation whose id is 57328000000TNIF -->
+<!-- For this usage, the "Animation" type of this invitation should be set to "Custom",
+otherwise two invitations will appear (the Salesforce-provided one and this custom one). -->
+<div id="liveagent_invite_button_57328000000TNIF" style="display: none; position: fixed; border: 2px solid darkblue; border-radius: 5px; background-color: lightblue; height: 100px; width: 200px;">
+    <!-- Creates an "X" option to reject or close the invitation if it's offered  -->
+    <div style="cursor: pointer; padding: 5px; right: 0px; position: absolute; color: darkred; font-weight: bold;" onclick="liveagent.rejectChat('57328000000TNIF');"/>
+    <!-- Provides the Start Chat option for the customer to accept or start the chat for the invitation  -->
+    <div style="cursor: pointer; top: 42px; left: 65px; position: absolute;font-weight: bold; font-size: 16px;" onclick="liveagent.startChat('57328000000TNIF');"/>
+</div>
+<!-- Live Agent Deployment Code that makes chat available -->
+<script type='text/javascript' src='https://c.la10.salesforceliveagent.com/content/g/js/36.0/deployment.js'></script>
+<script type='text/javascript'>
+    <!-- Creates the callback function used for the Live Agent chat invitation to present it or not based on availability and the customer's interaction with it -->
+    function buttonCallback(e) {
+        <!-- When the chat invitation is online (i.e. at least one available, skilled agent), display it at position top 200px and left 300px -->
+        if (e == liveagent.BUTTON_EVENT.BUTTON_AVAILABLE) {
+        document.getElementById('liveagent_invite_button_57328000000TNIF').style.display = '';
+        document.getElementById('liveagent_invite_button_57328000000TNIF').style.left = '300px';
+        document.getElementById('liveagent_invite_button_57328000000TNIF').style.top = '200px';
+        }
+        <!-- When the chat invitation is offline, don't display it -->
+        if (e == liveagent.BUTTON_EVENT.BUTTON_UNAVAILABLE) {
+        document.getElementById('liveagent_invite_button_57328000000TNIF').style.display = 'none';
+        }
+        <!-- When the chat invitation is accepted, stop displaying it -->
+        if (e == liveagent.BUTTON_EVENT.BUTTON_ACCEPTED) {
+        document.getElementById('liveagent_invite_button_57328000000TNIF').style.display = 'none';
+      } 
+        <!-- When the chat invitation is rejected, stop displaying it -->
+        if (e == liveagent.BUTTON_EVENT.BUTTON_REJECTED) {
+        document.getElementById('liveagent_invite_button_57328000000TNIF').style.display = 'none';
+        }
+    }
+    <!-- Registers the function buttonCallback() above as the callback for the chat invitation whose id is 57328000000TNIF -->
+    liveagent.addButtonEventHandler('57328000000TNIF', buttonCallback);
+    // Let's say there is data available in JavaScript that you want to use in a custom sending rule.
+    var shoppingCartValue = 123.45;
+    // To pass this data so it can be used in Sending Rules in Salesforce setup, call setCustomVariable.
+    liveagent.setCustomVariable('shoppingCartValue', shoppingCartValue);
+    <!-- Live Agent deployment code that initializes chat for the deployment whose id is 57328000000TNIF and org is 00D280000011Hgq -->
+    liveagent.init('https://d.la10.salesforceliveagent.com/chat', '57228000000010Y', '00D280000011Hgq');
+   <!-- Enable Live Agent advanced logging to be available through the Browser's Developer Console -->
+
+    liveagent.enableLogging();
+</script>
+</apex:page>

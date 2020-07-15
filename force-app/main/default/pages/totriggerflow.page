@@ -1,0 +1,5 @@
+<apex:page standardController="Lead" tabStyle="Lead">
+    <flow:interview name="LeadAutoAssignmentFlow" finishLocation="/{!Lead.Id}">
+        <apex:param name="leadid" value="{!Lead.Id}"/>
+    </flow:interview>
+</apex:page>

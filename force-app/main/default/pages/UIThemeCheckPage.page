@@ -1,0 +1,4 @@
+<apex:page standardController="Opportunity" showHeader="true" sidebar="true">
+  <apex:outputPanel rendered="{!$User.UITheme == 'Theme4d'}">Currently in Lightning Experience UI</apex:outputPanel><br/> 
+   <apex:outputPanel rendered="{!$User.UITheme != 'Theme4d'}">Currently in Classic UI</apex:outputPanel>
+</apex:page>

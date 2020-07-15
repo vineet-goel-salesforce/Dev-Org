@@ -1,0 +1,6 @@
+<apex:component controller="EmailSupportController" access="global">
+
+    
+    
+
+</apex:component>

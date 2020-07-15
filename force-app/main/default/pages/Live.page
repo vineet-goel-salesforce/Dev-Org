@@ -1,0 +1,67 @@
+<apex:page >
+<html>
+<head>
+<script type="text/javascript">
+(function() { 
+  function handlePageLoad() {
+    var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+    document.getElementById('prechatForm').setAttribute('action',
+    decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+  } 
+  if (window.addEventListener) {
+    window.addEventListener('load', handlePageLoad, false);
+  } else { 
+    window.attachEvent('onload', handlePageLoad, false);
+  }
+})(); 
+</script>
+</head>
+<body>
+<form method="post" id="prechatForm">
+ 
+<!-- Detail inputs -->
+First Name: <input type="text"  onchange="myFunction()" name="liveagent.prechat.name" id="Name1" /><br />
+Name to confirm: <input type="text" name="liveagent.prechat.name" />
+Last Name: <input type="text" name="liveagent.prechat:contactLastName" /><br />
+Birthdate: <input type="text" Birthdate="liveagent.prechat:birthdate" /><br />
+Email: <input type="text" name="liveagent.prechat:contactEmail" /><br />
+Account: <input type="text" name="liveagent.prechat:accountName_var" /><br />
+Subject: <input type="text" name="liveagent.prechat:caseSubject" /><br />
+ 
+<!-- Map the detail inputs to the Contact and Account fields --> 
+<input type="hidden" name="liveagent.prechat.findorcreate.map:Contact" value="FirstName,contactFirstName;LastName,contactLastName;Email,contactEmail;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map:Account" value="Name,accountName_var;" /> 
+<!-- Try to find the Contact by email (exact match) and Account by accountname -->
+<input type="hidden" name="liveagent.prechat.findorcreate.map.doFind:Contact" value="Birthdate,true;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map.isExactMatch:Contact" value="Birthdate,true;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map.doFind:Contact" value="Name,true;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map.isExactMatch:Contact" value="Name,true;" />
+ 
+<!-- If the Contact and Account is not found, then create one with the following fields set -->
+<input type="hidden" name="liveagent.prechat.findorcreate.map.doCreate:Contact" value="FirstName,true;LastName,true;Email,true;Birthdate,true;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map.doCreate:Account" value="Name,true;" /> 
+<!-- Save the Contact and Account on the Live Chat Transcript's Contact Loookup -->
+<input type="hidden" name="liveagent.prechat.findorcreate.saveToTranscript:Contact" value="Contact" />
+<input type="hidden" name="liveagent.prechat.findorcreate.saveToTranscript:Account" value="Account" />
+ 
+<!-- Show the Contact and Account when it is found or created -->
+<input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Contact" value="true" />
+<input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Account" value="true" /> 
+<!-- Create a Case every time -->
+<input type="hidden" name="liveagent.prechat:caseRecordType" value="01228000000Tj5G" /> 
+<input type="hidden" name="liveagent.prechat:caseOrigin" value="Chat" />
+<input type="hidden" name="liveagent.prechat:status" value="Pending" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map:Case" value="RecordTypeId,caseRecordType;Origin,caseOrigin;Status,status;Subject,caseSubject;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.map.doCreate:Case" value="RecordTypeId,true;Origin,true;Status,true;Subject,true;" />
+<input type="hidden" name="liveagent.prechat.findorcreate.saveToTranscript:Case" value="Case" />
+<input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Case" value="true" />
+ 
+<!-- Link the Contact and Account to the Case -->
+<input type= "hidden" name="liveagent.prechat.findorcreate.linkToEntity:Contact" value="Case,ContactId" />
+<input type= "hidden" name="liveagent.prechat.findorcreate.linkToEntity:Account" value="Case,AccountId" /> 
+<input type="submit" value="Request Chat" id="prechat_submit" />
+ 
+</form> 
+</body>
+</html>
+</apex:page>

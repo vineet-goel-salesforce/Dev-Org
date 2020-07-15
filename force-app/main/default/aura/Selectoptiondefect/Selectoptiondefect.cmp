@@ -1,0 +1,43 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" controller="LaunchPadController">
+    <aura:attribute name="animalList" type="String[]" default="['tiger']" />
+    <aura:attribute name="colorList" type="String[]" />
+    <aura:attribute name="colorListTwo" type="String[]" />
+    <aura:attribute name="contactList" type="Contact[]" />
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    This is test component for Salesforce Support: <br/>
+    <div>                                                
+        <ui:inputSelect label="Animal:" aura:id="animalSelection">                                                                     
+            <aura:iteration items="{!v.animalList}" var="animalItem">
+                <ui:inputSelectOption text="{!animalItem}" label="{!animalItem}"/>
+            </aura:iteration>
+        </ui:inputSelect>          
+    </div>
+    <br/>
+    <div>                                                
+        <ui:inputSelect label="Single Color:" aura:id="colorSelection" change="{!c.onSelectChange}">                                                                     
+            <aura:iteration items="{!v.colorList}" var="colorItem">
+                <ui:inputSelectOption text="{!colorItem}" label="{!colorItem}" value='true' />
+            </aura:iteration>
+        </ui:inputSelect>          
+    </div>
+    <br/>
+    <div>                                                
+        <ui:inputSelect label="Multiple Color:" aura:id="mcolorSelection">                                                                     
+            <aura:iteration items="{!v.colorListTwo}" var="colorItemTwo">
+                <ui:inputSelectOption text="{!colorItemTwo}" label="{!colorItemTwo}" value='true' />
+            </aura:iteration>
+        </ui:inputSelect>          
+    </div>
+    <br/>
+    <div>                                                
+        <ui:inputSelect label="Contact:" aura:id="contactSelection">   
+            <aura:iteration items="{!v.contactList}" var="contact">
+                <ui:inputSelectOption text="{!contact.Name}" label="{!contact.Name}"/>
+            </aura:iteration>
+        </ui:inputSelect>                        
+    </div>
+    <br/>
+    <ui:button aura:id="selectedValues" label="What Values are Selected?" press="{!c.selectionMade}"/>
+</aura:component>

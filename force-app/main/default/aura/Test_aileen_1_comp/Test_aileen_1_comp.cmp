@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="public" >
+	<ltng:require styles="/resource/slds080/assets/styles/salesforce-lightning-design-system.css"/>
+     <aura:attribute name="theAsset" access="public"
+        type="Asset" 
+        default="{ 'sobjectType': 'Asset',
+                   'Id': '',
+                 'Name': true}"/>
+   <div style="slds"> 
+    <div class="slds">
+        <div aura:id="mainContent" class="slds-show">
+	        <div class="slds-card">               
+	            <header class="slds-card__header slds-grid">
+	                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <c:svgIcon svgPath="/resource/slds080/assets/icons/action-sprite/svg/symbols.svg#edit" category="action" size="medium" name="edit" />
+                        </div>
+                        <div class="slds-media__body">
+                            <h3 class="slds-text-heading--medium slds-truncate">Update LRU Profile</h3>
+                        </div>
+		            </div>
+                </header>
+                        </div>
+                    </div>
+      		    </div>
+        </div>
+</aura:component>

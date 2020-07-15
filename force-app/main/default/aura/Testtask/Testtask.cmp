@@ -1,0 +1,6 @@
+<aura:component implements="force:lightningQuickAction,flexipage:availableForRecordHome" controller="testGlobalCtrl">
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    <aura:attribute name="record" type="task" default="{'sobjectType' : 'Task'}"/>\
+    
+	 \this is task type : {!v.record.Type}
+</aura:component>

@@ -1,0 +1,17 @@
+<!--<apex:page standardController="Opportunity" extensions="stagechange" sidebar="false" showHeader="false" showChat="false">
+    <apex:pageMessages></apex:pageMessages>
+    {!ShowMessage}
+    
+</apex:page> -->
+<apex:page standardController="Opportunity" sidebar="false" showHeader="false" showChat="false">
+<script type = "text/javascript">
+    window.onload=function()       
+    {        
+        var opp = "{!Opportunity.Id}";
+        if (opp.StageName='Prospecting'){
+        
+         alert('Warning: Please ask Student to update details from SEP.');
+        }
+    };
+</script>
+</apex:page>

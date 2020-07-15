@@ -1,0 +1,13 @@
+<aura:component controller="CampingListController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="items" type="Camping_Item__c[]" default="[]"/>
+    <aura:attribute name="item" type="Camping_Item__c" default="{ 
+                        'sobjectType': 'Camping_Item__c',
+                        'campingItemName': 'campingItemNameDefault',
+                        'Price__c': 0,
+                        'Quantity__c': '0',
+                        'Packed__c': false }"/>
+    <c:campingHeader />
+    <!-- <c:campingItemForm item="{!v.item}" items="{!v.items}" /> -->
+    <c:campingList items="{!v.items}"/>
+</aura:component>

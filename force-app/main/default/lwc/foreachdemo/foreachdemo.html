@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="For Each Demo" icon-name="custom:custom3">
+        <ul class="slds-m-around_medium">
+            <template for:each={carList} for:item="car">
+                <a href=# key={car} class="list-group-item list-group-item-action">{car}</a>
+            </template>
+        </ul>
+    </lightning-card>
+</hr>
+    <lightning-card title="For Each Demo with array of object" icon-name="custom:custom13">
+        <ul class="slds-m-around_medium">
+            <template for:each={programmingList} for:item="program">
+                <a href=# key={program.id} class="list-group-item list-group-item-action">{program.language}</a>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

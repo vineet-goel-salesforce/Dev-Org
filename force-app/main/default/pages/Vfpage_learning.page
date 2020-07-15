@@ -1,0 +1,18 @@
+<apex:page standardController="Contact" extensions="contactextsn">
+    <apex:form >
+        <apex:pageBlock title="Create Contact for Mr. {!$User.LastName}">
+                <apex:pageBlockSection columns="2">
+                    <apex:inputField value="{!con.FirstName}" html-placeholder="Firstname"/>
+                    <apex:inputField value="{!con.LastName}" html-placeholder="Lastname"/>
+                    <apex:inputtext value="{!con.Email}" html-placeholder="Email"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Contact Related info">
+                    <apex:inputField value="{!con.ownerId}"/>
+                </apex:pageBlockSection>
+                    <apex:pageBlockButtons >
+                            <apex:commandButton action="{!save}" value="Save"/>
+                            <apex:commandButton action="{!cancel}" value="Cancel"/>
+                    </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

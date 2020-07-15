@@ -1,0 +1,62 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" controller="LaunchPadController">    
+	<!-- Attributes set at Design Time -->
+    <aura:attribute name="allowContactList" type="boolean" default="true"/>
+    
+    <!-- Attributes set by LaunchPad Component -->
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="selectedProvider" type="String" default=""/>
+    
+    <!-- Attributes set by Apex Controller method calls -->
+    <aura:attribute name="disableLaunch" type="boolean" default="true"/>
+    <aura:attribute name="contactList" type="Contact[]" />
+    <aura:attribute name="newCaseSelected" type="boolean" default="false"/>
+    
+    <!-- Event Handlers -->
+	<aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>	
+    
+    <!-- Primary launch buttons -->
+    <ui:button class="base disabled" aura:id="WinFlex" label="Launch WinFlex" press="{!c.showDialog}" disabled="{!v.disableLaunch}" buttonTitle=""/>
+    <ui:button class="base disabled" aura:id="iGo" label="Launch iGo" press="{!c.showDialog}" disabled="{!v.disableLaunch}" buttonTitle=""/>
+    
+    <!-- Modal Dialog for User input -->
+    <div class="slds">
+    	<div aria-hidden="true" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-hide" aura:id="modaldialog">
+            <div class="slds-modal__container">
+            	<div class="slds-modal__header slds-theme--info">                    
+                    <h2 class="slds-text-heading--medium">{!v.selectedProvider} Launch Options</h2>                         
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.hideDialog}">
+                        <c:svgIcon class="slds-button__icon slds-button__icon--small" svgPath="/resource/SLDS/salesforce-lightning-design-system-icons/action-sprite/svg/symbols.svg#close" category="standard" size="small" name="close" />                                                                                               
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div>                                                
+                        <ui:inputSelect label="Case Type:" aura:id="caseSelection" change="{!c.caseSelectionChanged}">                            
+                            <ui:inputSelectOption text="select" label="Select ..."/>
+                            <ui:inputSelectOption text="New" label="New Case"/>
+                            <ui:inputSelectOption text="MyCases" label="My Cases"/>
+                        </ui:inputSelect>                        
+                    </div>              
+                    <aura:renderIf isTrue="{!v.allowContactList}"> 
+                        <aura:renderIf isTrue="{!v.newCaseSelected}">
+                            <div>                                                
+                                <ui:inputSelect label="Contact:" aura:id="contactSelection" >                                                            
+                                    <aura:iteration items="{!v.contactList}" var="contact">
+                                        <ui:inputSelectOption text="{!contact.Id}" label="{!contact.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>                        
+                            </div>                   
+                        </aura:renderIf>
+                    </aura:renderIf>                    
+                </div>
+                <div class="slds-modal__footer">
+                	<button class="slds-button slds-button--neutral" onclick="{!c.hideDialog}">Cancel</button>
+                    <button class="slds-button slds-button--brand" onclick="{!c.selectionMade}">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+	</div>
+</aura:component>

@@ -1,0 +1,18 @@
+<apex:page standardController="Opportunity" renderAs="pdf">
+<apex:form style="margin: 10px; font family: SansSerif; font-size: 12pt;">
+
+
+<apex:pageblock title="{!Opportunity.Account.Name}">
+{!Opportunity.Account.BillingStreet} <br/>
+{!Opportunity.Account.BillingCity}, {!Opportunity.Account.BillingState} {!Opportunity.Account.BillingPostalCode} <br/>
+
+<apex:pageBlockSection >
+<apex:repeat var="cases" value="{!Opportunity.Account}">
+
+{!cases.Name}<br/>
+{!cases.Phone}<br/>
+</apex:repeat>
+</apex:pageBlockSection>
+</apex:pageblock>
+</apex:form>
+</apex:page>

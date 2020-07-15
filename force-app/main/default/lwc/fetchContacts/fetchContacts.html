@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Contact Details" icon-name="custom:custom63">
+        <div class="slds-align_absolute-center" style="height:5rem">
+            <template if:true={contacts.data}>
+                    <div class="slds-align_absolute-center" style="height:5rem">
+                        <template for:each={contacts.data} for:item="contact">
+                        <p key={contact.Id}>{contact.FirstName} {contact.LastName} </p>
+                    </template>
+                    </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

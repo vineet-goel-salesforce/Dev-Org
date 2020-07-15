@@ -1,0 +1,19 @@
+<apex:page standardStylesheets="false" standardController="Asset">
+    <apex:includeLightning />
+    <div id="theAsset" />
+    <script>
+        $Lightning.use("c:Test_aileen_1", function() {
+          $Lightning.createComponent("c:Test_aileen_1_comp",
+          {theAsset: {
+              sobjectType: "Asset",
+              Name: "{!Asset.Name}",
+              Id: {!ISBLANK(Asset.Id)} ? null : "{!Asset.Id}"
+          } },
+          "theAsset",
+          function(cmp) {
+             console.log("LRU Profile component created!");
+             console.log(cmp);
+          });
+        });
+    </script>
+</apex:page>

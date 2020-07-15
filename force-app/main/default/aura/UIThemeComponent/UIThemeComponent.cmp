@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,force:hasSObjectName" access="global" >
+    <aura:attribute name="recordsId" type="String"/>
+    <aura:attribute name="url" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.openSubTabClick}"/>
+    <div class="slds-align_absolute-center">
+    <iframe src = "{!v.url}" width="800px" height = "400px" />
+    
+    </div>
+     <footer class="slds-modal__footer">
+        <div class="slds-show" aura:id="newbuttondiv">
+            <lightning:button variant="neutral" label="Close" title="Close" onclick="{!c.dismissIt}"/>
+           </div>
+    </footer>    
+    
+</aura:component>

@@ -1,0 +1,7 @@
+<apex:page controller="StudentDocumentsController">
+    <apex:form >     
+        <apex:pageBlock title="Continuation Demo">                         
+            <apex:commandButton action="{!documentCallAll}" value="Request Service"  reRender="responseBlock"/> -->     
+        </apex:pageBlock>     
+    </apex:form>
+</apex:page>
