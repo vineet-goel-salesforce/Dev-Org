@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Object Picklist">
+        <select class="slds-select" onchange={handleonChange}>
+            <template for:each = {objectNames} for:item= "objectName">
+                <option key={objectName.value} value={objectName.value}>
+                    <div class="objName">
+                        {objectName.label}
+                    </div>
+                </option>
+            </template>
+        </select>
+    </lightning-card>
+</template>
