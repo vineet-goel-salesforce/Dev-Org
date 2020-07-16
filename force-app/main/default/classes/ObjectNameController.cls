@@ -6,6 +6,5 @@
 public with sharing class ObjectNameController {
 
         public static final String PARTITION_NAME = 'ObjectData';
-        system.debug('test');
 
 }
