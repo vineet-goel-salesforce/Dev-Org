@@ -10,6 +10,4 @@ public with sharing class ObjectNameController {
                 system.debug('test');
                 return PARTITION_NAME;
         }
-
-        
 }
