@@ -4,8 +4,12 @@
  * @author            : Vineet Goel
 **/
 public with sharing class ObjectNameController {
+        @AuraEnabled
+        public static string methodName(){
+                String PARTITION_NAME = 'ObjectData';
+                system.debug('test');
+                return PARTITION_NAME;
+        }
 
-        public static final String PARTITION_NAME = 'ObjectData';
-        system.debug('test');
-
+        
 }
