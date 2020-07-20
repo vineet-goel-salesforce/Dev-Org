@@ -118,7 +118,7 @@ public with sharing class ObjectNameController {
                         this.label = label;
                         this.value = apiName;
                 }
-                public Integer compareTo(Object ObjectComparison){
+                public Integer compareTo(Object objectComparison){
                         return label.CompareTo(((ObjectOptions) ObjectComparison).label);
                 }
                 
