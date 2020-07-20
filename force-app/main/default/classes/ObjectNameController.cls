@@ -3,6 +3,7 @@
                         Usage of platform cache to showcase the performance gains
  * @author            : Vineet Goel
 **/
+
 public with sharing class ObjectNameController {
 
         public static final String PARTITION_NAME = 'ObjectData';
