@@ -2,8 +2,8 @@
     <lightning-card title="Object Picklist">
         <select class="objName" onchange={handleonChange}>
             <template for:each = {objectNames} for:item= "objectName">
-                <option key={objectName.value} value={objectName.value}>
-                    <div class="objName">
+                <option key={objectName.value} value={objectName.value}>    
+                    <div >
                         {objectName.label}
                     </div>
                 </option>

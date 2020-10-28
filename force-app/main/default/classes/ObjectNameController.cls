@@ -26,8 +26,6 @@ public with sharing class ObjectNameController {
                         ]) {
                         objectNames.add(new ObjectOptions(obj.Label, obj.QualifiedApiName));
                         }
-                        system.debug('objectNames'+objectNames.size());
-                        system.debug('objectNames>>>'+objectNames);
                 }catch (exception e) {
                         throw new AuraHandledException(e.getMessage());
                         }
@@ -76,7 +74,7 @@ public with sharing class ObjectNameController {
                                 PARTITION_NAME
                         );
                         if (orgPartition != null) {
-                                // Load from Cache
+                                // Use stored value in Cache
                                 if (orgPartition.get('objectlistcache') != null) {
                                 objectNames = (List<ObjectOptions>) orgPartition.get(
                                         'objectlistcache'

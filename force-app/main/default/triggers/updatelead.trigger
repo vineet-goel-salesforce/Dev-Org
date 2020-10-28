@@ -4,6 +4,7 @@ trigger updatelead on contact(after insert, after update)
     List<Lead> leadobj = new List<Lead>();
     List<Lead> leadobj1 = new List<Lead>();
     List<Contact> lstcontact = new List<Contact>();
+    integer a;
     system.debug('----lstcontact----'+lstlead);
     Map<id, string> maplst = new Map<id, string>();
     Map<id, string> maplead = new Map<id, string>();
@@ -13,7 +14,8 @@ trigger updatelead on contact(after insert, after update)
         maplst.put(c.id, c.Title);
         system.debug('----maplst----'+maplst);
         lstlead = [select id, Lead_Group_number__c from lead where Contact__c =: c.id];
-        system.debug('----lstlead----'+lstlead);          
+        system.debug('----lstlead----'+lstlead);    
+              
       
     if(trigger.isupdate)
     {
