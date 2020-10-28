@@ -1,12 +1,12 @@
 import { LightningElement, track, wire } from 'lwc';
-//import getObjectNamesFromCache from '@salesforce/apex/ObjectNameController.objectNamesFromCache';
+import getObjectNamesFromCache from '@salesforce/apex/ObjectNameController.objectNamesFromCache';
 //import getObjectNamesbyCacheBuilderInterface from '@salesforce/apex/ObjectNameController.objectNamesbyCacheBuilderInterface';
-import getObjectNamesbySOQL from '@salesforce/apex/ObjectNameController.objectNamesbySOQL';
+//import getObjectNamesbySOQL from '@salesforce/apex/ObjectNameController.objectNamesbySOQL';
 
 export default class ShowObjectNames extends LightningElement {
     @track objectNames;
-    selectedObj;
-    @wire(getObjectNamesbySOQL) wiredObjectNames({error, data}){
+    @track selectedObj;
+    @wire(getObjectNamesFromCache) wiredObjectNames({error, data}){
         if(data){
             this.objectNames = data;
             this.error = undefined;

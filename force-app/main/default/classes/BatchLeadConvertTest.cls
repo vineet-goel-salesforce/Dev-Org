@@ -1,6 +1,6 @@
 @isTest
 public class BatchLeadConvertTest {
-
+    String s;
     @isTest
     static void sanity(){
         Lead l = new Lead(
